@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Dice Roller</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1>Dice Roller</h1>
+      <form action="/" method="POST">
+        <div class="form-group">
+          <label for="number-of-dice">Number of Dice:</label>
+          <input type="number" id="number-of-dice" name="numberOfDice" class="form-control" value="1" min="1" max="1000">
+        </div>
+        <div class="form-group">
+          <label for="type-of-die">Type of Die:</label>
+          <select id="type-of-die" name="typeOfDice" class="form-control">
+            <option value="4">D4</option>
+            <option value="6">D6</option>
+            <option value="8">D8</option>
+            <option value="10">D10</option>
+            <option value="12">D12</option>
+            <option value="20" selected>D20</option>
+            <option value="100">D100</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="modifier">Modifier:</label>
+          <input type="number" id="modifier" name="addToTotal" class="form-control" value="0">
+        </div>
+        <button type="submit" class="btn btn-primary">Roll Dice</button>
+      </form>
+      <div class="my-5">
+        <h5>Roll Results:</h5>
+        <% if (rolls.length > 0) { %>
+          <p>You rolled <%= numberOfDice %> D<%= typeOfDice %> for a total of <%= totalOfRolls %>.</p>
+          <p>Your rolls were: <%= rolls.join(", ") %>.</p>
+          <p>Your average roll was <%= averageOfRolls.toFixed(2) %> and your final value was <%= finalValue %>.</p>
+          <p>Your highest roll was <%= highestRoll %> and your lowest roll was <%= lowestRoll %>.</p>
+        <% } %>
+        <% if (error) { %>
+          <p class="text-danger"><%= error %></p>
+        <% } %>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  </body>
+</html>
